@@ -9,11 +9,11 @@ DATASET_ID = "youtube_comments"
 TABLE_ID = "comments_train"
 
 # Target load
-HOURS = 1
-RECORDS_PER_HOUR = 5000
+HOURS = 5
+RECORDS_PER_HOUR = 1000
 
 # Insert every 20 seconds
-BATCH_INTERVAL_SECONDS = 20   # 20 sec
+BATCH_INTERVAL_SECONDS = 300   # 5 min
 
 BATCHES_PER_HOUR = 3600 // BATCH_INTERVAL_SECONDS  # 180 batches/hour
 RECORDS_PER_BATCH = RECORDS_PER_HOUR // BATCHES_PER_HOUR  # ~5.55 → 5 or 6
