@@ -1,0 +1,5 @@
+project_id: "ambient-elf-487017-d6"
+bucket: "yt-raw-comments-ambient-elf-487017-d6"
+pubsub_topic: "yt-comments-topic"
+bq_dataset: "youtube_comments"
+bq_table: "comments"

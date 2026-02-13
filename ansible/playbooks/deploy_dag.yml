@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: Upload DAG to Composer
+      command: >
+        gcloud composer environments storage dags import
+        --environment yt-pipeline-composer
+        --location us-central1
+        --source ../../dags/yt_pipeline_dag.py
+
+    - name: Upload ML folder to Composer DAGs bucket
+      command: >
+        gcloud composer environments storage dags import
+        --environment yt-pipeline-composer
+        --location us-central1
+        --source ../../ml 

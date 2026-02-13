@@ -1,0 +1,4 @@
+project_id: "ambient-elf-487017-d6"
+region: "us-central1"
+cf_sa_email: "cloud-fn-sa@ambient-elf-487017-d6.iam.gserviceaccount.com"
+bucket: "yt-raw-comments-487017"

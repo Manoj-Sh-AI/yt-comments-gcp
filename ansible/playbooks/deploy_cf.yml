@@ -1,0 +1,23 @@
+- hosts: localhost 
+  tasks: 
+    - name: Zip Cloud Function source 
+      archive: 
+        path: ../../app/ 
+        dest: /tmp/yt_ingestion.zip 
+        format: zip 
+
+    - name: Upload ZIP to GCS bucket 
+      command: gsutil cp /tmp/yt_ingestion.zip gs://yt-cf-source-{{ project_id }}/yt_ingestion.zip 
+
+    - name: Deploy Cloud Function
+      command: >
+        gcloud functions deploy yt-ingestion-fn
+        --region {{ region }}
+        --runtime python310
+        --trigger-http
+        --allow-unauthenticated
+        --source gs://yt-cf-source-{{ project_id }}/yt_ingestion.zip
+        --entry-point main
+        --service-account {{ cf_sa_email }}
+        --set-env-vars GCP_PROJECT={{ project_id }}
+        --quiet

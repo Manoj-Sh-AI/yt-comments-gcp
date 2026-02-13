@@ -1,0 +1,21 @@
+- hosts: localhost
+  tasks:
+    - name: Package Dataflow job
+      command: python3 setup.py sdist
+      args:
+        chdir: ../../dataflow
+
+    - name: Install Python dependencies
+      pip:
+        requirements: requirements.txt
+        executable: pip3
+      args:
+        chdir: ../../dataflow
+
+    - name: Upload pipeline to GCS
+      command: gsutil cp ../../dataflow/pipeline.py gs://yt-raw-comments-{{ project_id }}/pipeline.py
+
+    - name: Run Dataflow pipeline
+      command: python3 pipeline.py
+      args:
+        chdir: ../../dataflow

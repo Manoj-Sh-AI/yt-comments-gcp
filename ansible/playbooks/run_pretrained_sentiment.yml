@@ -1,0 +1,10 @@
+- hosts: localhost
+  tasks:
+    - name: Install Python dependencies
+      pip:
+        name:
+          - google-cloud-language
+          - google-cloud-bigquery
+
+    - name: Run pretrained sentiment analysis
+      command: python3 ../../ml/pretrained_sentiment.py
